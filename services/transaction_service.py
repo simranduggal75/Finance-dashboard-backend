@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from models.transaction import Transaction
-
+from datetime import date 
+from sqlalchemy import func
 
 def create_transaction(db: Session, data):
     transaction = Transaction(
@@ -13,17 +14,21 @@ def create_transaction(db: Session, data):
     db.add(transaction)
     db.commit()
     db.refresh(transaction)
+    
     return transaction
 
 
-def get_transactions(db: Session, type=None, category=None, skip=0, limit=10):
+def get_transactions(db: Session, type=None, category=None, date=None, skip=0, limit=10):
     query = db.query(Transaction)
 
     if type:
-        query = query.filter(Transaction.type == type)
+        query = query.filter(func.lower(Transaction.type) == type.lower())
 
     if category:
-        query = query.filter(Transaction.category == category)
+        query = query.filter(func.lower(Transaction.category) == category.lower())
+
+    if date:
+        query = query.filter(Transaction.date == date)
 
     return query.offset(skip).limit(limit).all()
 
@@ -53,3 +58,4 @@ def delete_transaction(db: Session, transaction_id: int):
     db.delete(transaction)
     db.commit()
     return transaction
+

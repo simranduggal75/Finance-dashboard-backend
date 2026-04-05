@@ -6,7 +6,7 @@ from schemas.transaction_schema import TransactionCreate, TransactionResponse
 from services.transaction_service import create_transaction, get_transactions
 from utils.auth import get_role, require_admin
 from services.transaction_service import update_transaction, delete_transaction
-
+from datetime import date
 router = APIRouter(prefix="/transactions", tags=["Transactions"])
 
 
@@ -23,12 +23,13 @@ def create_transaction_route(
 def get_transactions_route(
     type: str = Query(None),
     category: str = Query(None),
+    date : date = Query(None),
     skip: int = 0,
     limit: int = 10,
     role: str = Depends(get_role),
     db: Session = Depends(get_db)
 ):
-    return get_transactions(db, type, category, skip, limit)
+    return get_transactions(db, type, category, date, skip, limit)
 
 @router.put("/{transaction_id}", response_model=TransactionResponse)
 def update_transaction_route(
