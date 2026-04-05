@@ -159,3 +159,17 @@ Returns:
 - Ensure correct role header (X-ROLE) is provided while testing APIs  
 - API can be tested directly using Swagger UI  
 
+
+## 👩‍💻 Author
+
+Simran Duggal
+
+AI/ML Engineer 
+
+
+## ⭐ If you found this useful
+
+Give this repo a ⭐ on GitHub!
+
+## 📸 Output Screenshot
+  Please refer to screenshots folder for output screenshots
