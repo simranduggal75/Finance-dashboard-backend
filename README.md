@@ -35,9 +35,11 @@ finance-dashboard-backend/
 
 │── routes/
 
-│── services/
-
 │── schemas/
+
+│── screenshots/
+
+│── services/
 
 │── utils/
 
