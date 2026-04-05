@@ -26,3 +26,30 @@ def get_transactions(db: Session, type=None, category=None, skip=0, limit=10):
         query = query.filter(Transaction.category == category)
 
     return query.offset(skip).limit(limit).all()
+
+def update_transaction(db: Session, transaction_id: int, data):
+    transaction = db.query(Transaction).filter(Transaction.id == transaction_id).first()
+
+    if not transaction:
+        return None
+
+    transaction.amount = data.amount
+    transaction.type = data.type
+    transaction.category = data.category
+    transaction.date = data.date
+    transaction.description = data.description
+
+    db.commit()
+    db.refresh(transaction)
+    return transaction
+
+
+def delete_transaction(db: Session, transaction_id: int):
+    transaction = db.query(Transaction).filter(Transaction.id == transaction_id).first()
+
+    if not transaction:
+        return None
+
+    db.delete(transaction)
+    db.commit()
+    return transaction
