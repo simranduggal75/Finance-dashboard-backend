@@ -3,10 +3,3 @@ uvicorn
 pydantic[email]
 email-validator
 SQLAlchemy
-requests
-yfinance
-textblob
-numpy
-pandas
-scikit-learn
-matplotlib
