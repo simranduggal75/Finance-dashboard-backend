@@ -3,6 +3,15 @@
 A backend system for managing financial records with role-based access control, built using FastAPI and SQLite.
 
 
+## Live Demo
+
+🔗 https://finance-dashboard-backend-qtyj.onrender.com/docs
+
+## Live Demo Note
+
+The application is deployed on Render's free tier.  
+If inactive, the server may take 30–60 seconds to wake up on the first request.
+
 
 ## 🚀 Features
 
